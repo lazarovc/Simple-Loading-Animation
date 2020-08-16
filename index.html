@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transitions</title>
+    <style>
+
+        *{
+            padding: 0;
+            margin: 0;
+
+        }
+
+        html, body {
+            overflow: hidden;
+        }
+
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bag{
+
+            display: grid;
+            grid-gap: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            animation-name: rotate-me;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 3;
+        }
+      
+        .ball{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: orange;
+
+            animation-name: scale-me, color-me;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 3;
+        }
+
+        .ball:nth-child(5){
+            
+            animation-name: bigger-me;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 3;
+        }
+
+        #wrapper{
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+
+        @keyframes scale-me {
+            
+            from{
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(0.1);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
+        @keyframes bigger-me {
+            
+            from{
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(2);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate-me {
+            
+            from{
+                transform: rotate(0);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes color-me {
+            
+            from{
+                background-color: orange;
+            }
+            to{
+                background-color: lightgreen;
+            }
+        }
+
+        @keyframes go-away {
+            from{
+                transform: scale();
+            }
+            to{
+                transform: scale(25);
+ 
+            }
+
+        }
+
+
+    
+      
+    </style>
+
+</head>
+<body>
+
+    <div id="wrapper">
+    
+        <div class="bag" id="bag">
+            
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+
+            </div>
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+
+            </div>
+            <div class="ball">
+        
+            </div>
+            <div class="ball">
+        
+            </div>
+
+            
+        </div>
+
+    </div>
+
+    <script>
+        const $bag = document.getElementById("bag");
+        const $wrapper = document.getElementById("wrapper");
+
+        // $bag.addEventListener("evento", "accion")
+        $bag.addEventListener("animationend", (event)=> {
+            if(event.animationName == "rotate-me"){
+                $bag.style.animationName = "go-away";
+                $bag.style.animationDuration = "1s";
+                $bag.style.animationIterationCount = "1";
+            
+            }
+
+            if(event.animationName == "go-away"){
+                $bag.style.display = "none";
+                $wrapper.style.background = "orange";
+            }
+
+        })
+    
+    </script>
+   
+</body>
+</html>
